@@ -16,12 +16,10 @@ public class Silnia {
         }
       return silnia;
     }
-
     public static int silniaRecursive (int arg)
     {
         return arg>1
                 ?silniaRecursive(arg -1)
                  : 1;
-
     }
 }
