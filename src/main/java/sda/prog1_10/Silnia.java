@@ -7,6 +7,7 @@ public class Silnia {
         System.out.println("silnia 6 = " + silniaRecursive(6));
     }
 
+
     public static int silnia (int arg) {
 
         int silnia = 1;
