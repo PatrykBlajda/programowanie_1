@@ -16,7 +16,7 @@ public class Bank {
     }
 
     public boolean addCustomer(Customer customer) {
-        if(checkCustomerOnList(customer)) {
+        if (checkCustomerOnList(customer)) {
             System.out.println("Klient " + customer + " już jest w systemie.");
             return false;
         }
@@ -28,7 +28,7 @@ public class Bank {
     }
 
     public boolean removeCustomer(Customer customer) {
-        if(checkCustomerOnList(customer)) {
+        if (checkCustomerOnList(customer)) {
             return removeCustomerIfHasNoAccounts(customer);
         }
         return customerNotFound(customer);
@@ -40,7 +40,7 @@ public class Bank {
     }
 
     private boolean removeCustomerIfHasNoAccounts(Customer customer) {
-        if(customer.getAccounts().isEmpty()) {
+        if (customer.getAccounts().isEmpty()) {
             return removeCustomerWithEmptyAccountList(customer);
         }
         System.out.println("Nie można usunąć klienta " + customer
@@ -55,9 +55,9 @@ public class Bank {
     }
 
     public boolean addAccount(Customer customer, AccountKind accountKind) {
-        if(checkCustomerOnList(customer)) {
+        if (checkCustomerOnList(customer)) {
             List<Account> customerAccounts = customer.getAccounts();
-            Account account = new Account("IBAN"+accountNumber.toString());
+            Account account = new Account("IBAN" + accountNumber.toString());
             account.setAccountKind(accountKind);
             customerAccounts.add(account);
             accountNumber++;
@@ -73,9 +73,9 @@ public class Bank {
     }
 
     public boolean deposit(Customer customer, Account account, int amount) {
-        if (customers.contains(customer)){
+        if (customers.contains(customer)) {
             List<Account> accounts = customer.getAccounts();
-            if(accounts.contains(account)) {
+            if (accounts.contains(account)) {
                 accounts.get(accounts.indexOf(account)).deposit(amount);
                 customer.setAccounts(accounts);
                 System.out.println("Wpłata " + amount + " na rachunek " + account + " zaksięgowana");
@@ -84,4 +84,43 @@ public class Bank {
         return customerNotFound(customer);
     }
 
+    public boolean withdraw(Customer customer, Account account, int amount) {
+        if (checkCustomerOnList(customer)) {
+            List<Account> accounts = customer.getAccounts();
+            if (accounts.contains(account)) {
+                if (accounts.get(accounts.indexOf(account)).withdraw(amount)) {
+                    System.out.println("Wypłata " + amount + "z rachunku" + account + "zaksięgowana.");
+                    return true;
+                }
+                System.out.println("Wypłata nie powieodła się");
+                return false;
+            }
+            System.out.println("Nie znaleziono konta " + account + "dla klienta" + customer);
+            return false;
+
+        }
+        return customerNotFound(customer);
+    }
+
+    public void printAccountList(Customer customer, boolean printBalance) {
+        if(checkCustomerOnList(customer)) {
+            List<Account> accounts = customer.getAccounts();
+            accounts.stream()
+            .forEach(a-> System.out.println("\t" + a.getAccountNumber()+" " + a.getAccountKind()
+                    + (printBalance ? a.getBalance() : "")));
+
+        }
+
+    }
+    public void printCustomerOnList (boolean printBalance) {
+        customers.stream()
+                .forEach(c-> {
+                    printCustomerAndHisAccounts(printBalance, c);
+                });
+    }
+
+    private void printCustomerAndHisAccounts(boolean printBalance, Customer c) {
+        System.out.println(c);
+        printAccountList(c,printBalance);
+    }
 }
