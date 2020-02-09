@@ -70,6 +70,7 @@ public class Bank {
 
     private boolean checkCustomerOnList(Customer customer) {
         return customers.contains(customer);
+
     }
 
 }
