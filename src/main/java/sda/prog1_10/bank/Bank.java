@@ -40,7 +40,7 @@ public class Bank {
     }
 
     private boolean removeCustomerIfHasNoAccounts(Customer customer) {
-        if (customer.getAccounts().isEmpty()) {
+        if(customer.getAccounts().isEmpty()) {
             return removeCustomerWithEmptyAccountList(customer);
         }
         System.out.println("Nie można usunąć klienta " + customer
@@ -123,4 +123,16 @@ public class Bank {
         System.out.println(c);
         printAccountList(c,printBalance);
     }
+    public boolean deposit(Customer customer, Account account, int amount) {
+        if (customers.contains(customer)){
+            List<Account> accounts = customer.getAccounts();
+            if(accounts.contains(account)) {
+                accounts.get(accounts.indexOf(account)).deposit(amount);
+                customer.setAccounts(accounts);
+                System.out.println("Wpłata " + amount + " na rachunek " + account + " zaksięgowana");
+            }
+        }
+        return customerNotFound(customer);
+    }
+
 }
