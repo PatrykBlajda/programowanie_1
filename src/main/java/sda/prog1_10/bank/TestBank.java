@@ -1,5 +1,9 @@
 package sda.prog1_10.bank;
 
+import sda.prog1_10.bank.migration.CustomersMigration;
+
+import java.util.List;
+
 public class TestBank {
     public static void main(String[] args) {
         Bank bank = new Bank ("SDA BANK");
@@ -23,6 +27,12 @@ public class TestBank {
         bank.deposit(customer1, account, 10);
         account = customer3.getAccounts().get(1);
         bank.deposit(customer3, account, 25);
+        CustomersMigration migration = new CustomersMigration();
+        List<Customer> migratedCustomers = migration.migrate("BankData.txt", "\\|" );
+        migration.addMigratedCustomers(bank, migratedCustomers);
 
+
+        System.out.println("Migration done.");
+        bank.printCustomerOnList(true);
     }
 }
