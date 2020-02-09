@@ -19,6 +19,10 @@ public class TestBank {
         bank.addAccount(customer3, AccountKind.SAVINGS);
 
         bank.printCustomerOnList(true);
+        Account account = customer1.getAccounts().get(0);
+        bank.deposit(customer1, account, 10);
+        account = customer3.getAccounts().get(1);
+        bank.deposit(customer3, account, 25);
 
     }
 }

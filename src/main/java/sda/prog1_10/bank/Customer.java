@@ -42,21 +42,23 @@ public class Customer {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Customer)) return false;
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
         Customer customer = (Customer) o;
-        return Objects.equals(getName(), customer.getName()) &&
-                Objects.equals(getSurname(), customer.getSurname());
+        return Objects.equals(name, customer.name) &&
+                Objects.equals(surname, customer.surname);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getName(), getSurname());
+        return Objects.hash(name, surname);
     }
 
     @Override
     public String toString() {
-        return  "name='" + name + '\'' +
+        return "name='" + name + '\'' +
                 ", surname='" + surname;
     }
 }
