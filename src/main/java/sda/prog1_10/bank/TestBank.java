@@ -18,6 +18,7 @@ public class TestBank {
         bank.addAccount(customer3, AccountKind.CURRENT);
         bank.addAccount(customer3, AccountKind.SAVINGS);
 
+        bank.printCustomerOnList(true);
 
     }
 }
