@@ -1,5 +1,8 @@
 package sda.prog1_10.bank;
 
+import com.sun.scenario.effect.impl.sw.java.JSWBlend_SRC_OUTPeer;
+import org.w3c.dom.ls.LSOutput;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -108,24 +111,37 @@ public class Bank {
         }
         return customerNotFound(customer);
     }
-
+    public boolean deleteAccount(Customer customer, Account account) {
+        if(checkCustomerOnList(customer)) {
+            List<Account> accounts = customer.getAccounts();
+            if (accounts.contains(account)) {
+                if (account.getBalance() == 0) {
+                    accounts.remove(account);
+                    System.out.println("Rachunek " + account + " usunięty");
+                    return true;
+                }
+                System.out.println("Na rachunku " + account + " saldo niezerowe, nie można usunąć");
+                return false;
+            }
+            return customerNotFound(customer);
+        }
+        return accountNotFound(account);
+    }
     public void printAccountList(Customer customer, boolean printBalance) {
         if(checkCustomerOnList(customer)) {
             List<Account> accounts = customer.getAccounts();
             accounts.stream()
             .forEach(a-> System.out.println("\t" + a.getAccountNumber()+" " + a.getAccountKind()
                     + (printBalance ? a.getBalance() : "")));
-
         }
-
     }
+
     public void printCustomerOnList (boolean printBalance) {
         customers.stream()
                 .forEach(c-> {
                     printCustomerAndHisAccounts(printBalance, c);
                 });
-    }
-
+}
     private void printCustomerAndHisAccounts(boolean printBalance, Customer c) {
         System.out.println(c);
         printAccountList(c,printBalance);
@@ -141,5 +157,13 @@ public class Bank {
         }
         return customerNotFound(customer);
     }
+public void printAllBankAccounts(){
+        customers.stream().forEach(
+                c-> {
+                    List<Account> customerAccounts = c.getAccounts();
+                    customerAccounts.forEach(System.out::println);
+                }
+        );
 
+}
 }
