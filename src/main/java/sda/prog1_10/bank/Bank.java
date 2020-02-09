@@ -11,58 +11,62 @@ public class Bank {
     private List<Customer> customers;
 
     public Bank(String name) {
-
         this.name = name;
         customers = new ArrayList<>();
     }
 
-    public boolean addCustomer(Customer customer){
-        if (customers.contains(customer)){
-            System.out.println("Klient " + customer + "już jest w systemie");
+    public boolean addCustomer(Customer customer) {
+        if(customers.contains(customer)) {
+            System.out.println("Klient " + customer + " już jest w systemie.");
             return false;
         }
         customer.setId(customerNumber.toString());
         customers.add(customer);
         customerNumber++;
-        System.out.println("Klient " + customer + "dodany");
+        System.out.println("Klient " + customer + " dodany");
         return true;
     }
 
     public boolean removeCustomer(Customer customer) {
-        if(customers.contains(customer)){
+        if(customers.contains(customer)) {
             return removeCustomerIfHasNoAccounts(customer);
         }
         return customerNotFound(customer);
     }
 
     private boolean customerNotFound(Customer customer) {
-        System.out.println("Klienta " + customer + " nie znaleziono w systemie");
+        System.out.println("Klienta " + customer + " nie znaleziono w systemie.");
         return false;
     }
 
     private boolean removeCustomerIfHasNoAccounts(Customer customer) {
-        if(customer.getAccounts() . isEmpty()){
-            customers. remove(customer);
-            System.out.println("Klient" + customer + " usunięty.");
-            return true;
+        if(customer.getAccounts().isEmpty()) {
+            return removeCustomerWithEmptyAccountList(customer);
         }
-
-        System.out.println("Nie można usunąć klienta" +customer + "bo ma otwarte rachunki");
+        System.out.println("Nie można usunąć klienta " + customer
+                + " bo ma otwarte rachunki");
         return false;
     }
 
-    public boolean adAccount ( Customer customer, AccountKind accountKind){
-        if(customers.contains(customer)){
+    private boolean removeCustomerWithEmptyAccountList(Customer customer) {
+        customers.remove(customer);
+        System.out.println("Klient " + customer + " usunięty.");
+        return true;
+    }
+
+    public boolean addAccount(Customer customer, AccountKind accountKind) {
+        if(customers.contains(customer)) {
             List<Account> customerAccounts = customer.getAccounts();
-            Account account = new Account(accountNumber"IBAN " + accountNumber.toString());
+            Account account = new Account("IBAN"+accountNumber.toString());
             account.setAccountKind(accountKind);
             customerAccounts.add(account);
             accountNumber++;
-            System.out.println("Dla klienta " +customer + "założone konto" + account;
+            System.out.println("Dla klienta " + customer +
+                    " założono konto " + account);
             return true;
         }
         return customerNotFound(customer);
     }
 
-}
 
+}
