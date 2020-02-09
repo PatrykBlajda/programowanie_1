@@ -57,6 +57,7 @@ public class CustomersMigration {
     private void fixAccountKind(Account account) {
         if ("O".equals(account.getAccountNumber())) {
             account.setAccountKind(AccountKind.SAVINGS);
+            return;
         }
         account.setAccountKind(AccountKind.CURRENT);
     }
