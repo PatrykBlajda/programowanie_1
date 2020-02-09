@@ -72,4 +72,16 @@ public class Bank {
         return customers.contains(customer);
     }
 
+    public boolean deposit(Customer customer, Account account, int amount) {
+        if (customers.contains(customer)){
+            List<Account> accounts = customer.getAccounts();
+            if(accounts.contains(account)) {
+                accounts.get(accounts.indexOf(account)).deposit(amount);
+                customer.setAccounts(accounts);
+                System.out.println("Wpłata " + amount + " na rachunek " + account + " zaksięgowana");
+            }
+        }
+        return customerNotFound(customer);
+    }
+
 }
