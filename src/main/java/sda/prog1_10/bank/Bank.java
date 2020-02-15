@@ -1,7 +1,6 @@
 package sda.prog1_10.bank;
 
 
-
 import java.util.ArrayList;
 import java.util.List;
 
