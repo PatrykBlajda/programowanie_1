@@ -1,5 +1,6 @@
 package sda.patterns.creational;
 
+import sda.patterns.creational.abstractFactory.*;
 import sda.patterns.creational.factory.ObjectFactory;
 import sda.patterns.creational.factory.ObjectType;
 import sda.patterns.creational.singleton.EagerSingleton;
@@ -49,6 +50,15 @@ public class CreationalTest {
     }
 
     private static void abstractFactoryTest () {
+        AFObjectType object1 = AFObjectFactory.getObject(
+                new AFObject1Factory("Object1", "param1", 2)
+        );
+
+        AFObjectType object2 = AFObjectFactory.getObject(
+                new AFObject2Factory("Object2", "param11", 22)
+
+        );
+
 
 }
 
