@@ -1,6 +1,6 @@
 package sda.patterns.creational.abstractFactory;
 
-public abstract class ObjectType {
+public abstract class AFObjectType {
     public abstract String getName();
     public abstract String getPar1();
     public abstract int getPar2();

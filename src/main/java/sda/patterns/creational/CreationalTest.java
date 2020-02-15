@@ -46,6 +46,10 @@ public class CreationalTest {
         System.out.println(object3);
         System.out.println("END");
 
+    }
+
+    private static void abstractFactoryTest () {
+
 }
 
 }

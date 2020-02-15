@@ -1,10 +1,10 @@
 package sda.patterns.creational.abstractFactory;
 
-public class Object1 extends ObjectType {
+public class AFObject1 extends AFObjectType {
     private String name;
     private String par1;
     private int par2;
-    public Object1(String name, String par1, int par2) {
+    public AFObject1(String name, String par1, int par2) {
         this.name = name;
         this.par1 = par1;
         this.par2 = par2;
