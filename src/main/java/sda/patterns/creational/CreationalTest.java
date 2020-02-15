@@ -1,6 +1,7 @@
 package sda.patterns.creational;
 
 import sda.patterns.creational.abstractFactory.*;
+import sda.patterns.creational.builder.BObject;
 import sda.patterns.creational.factory.ObjectFactory;
 import sda.patterns.creational.factory.ObjectType;
 import sda.patterns.creational.singleton.EagerSingleton;
@@ -15,6 +16,11 @@ public class CreationalTest {
         bPughSingletonTest();
         System.out.println("===============================");
         factoryTest();
+        System.out.println("===============================");
+        abstractFactoryTest();
+        System.out.println("===============================");
+
+
     }
 
     public static void eagerSingletonTest (){
@@ -53,14 +59,22 @@ public class CreationalTest {
         AFObjectType object1 = AFObjectFactory.getObject(
                 new AFObject1Factory("Object1", "param1", 2)
         );
-
+        System.out.println(object1);
         AFObjectType object2 = AFObjectFactory.getObject(
                 new AFObject2Factory("Object2", "param11", 22)
 
         );
+        System.out.println(object2);
 
+        }
 
-}
+        private static void builderTest(){
+            BObject object = new BObject.ObjectBuilder ("Object 1", "Param 1" ).setPar3(true).build();
+            BObject object2 = new BObject.ObjectBuilder ("Object 2", "Param 1" ).build();
+            BObject object3 = new BObject.ObjectBuilder ("Object 3", "Param 1" ).setPar2(10).build();
+            BObject object4 = new BObject.ObjectBuilder ("Object 4", "Param 1" ).setPar3(true).setPar2(40).build();
+
+        }
 
 }
 
