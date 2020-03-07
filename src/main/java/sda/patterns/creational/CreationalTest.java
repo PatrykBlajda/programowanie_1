@@ -70,6 +70,7 @@ public class CreationalTest {
 
         private static void builderTest(){
             BObject object = new BObject.ObjectBuilder ("Object 1", "Param 1" ).setPar3(true).build();
+            System.out.println(object);
             BObject object2 = new BObject.ObjectBuilder ("Object 2", "Param 1" ).build();
             BObject object3 = new BObject.ObjectBuilder ("Object 3", "Param 1" ).setPar2(10).build();
             BObject object4 = new BObject.ObjectBuilder ("Object 4", "Param 1" ).setPar3(true).setPar2(40).build();
