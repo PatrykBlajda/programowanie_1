@@ -1,10 +1,9 @@
-package sda.patterns.creational;
+package sda.patterns.creational.singleton;
 
 import sda.patterns.creational.abstractFactory.*;
 import sda.patterns.creational.builder.BObject;
 import sda.patterns.creational.factory.ObjectFactory;
 import sda.patterns.creational.factory.ObjectType;
-import sda.patterns.creational.singleton.EagerSingleton;
 
 public class CreationalTest {
 

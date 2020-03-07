@@ -1,4 +1,4 @@
-package sda.patterns.creational;
+package sda.patterns.creational.singleton;
 
 
 
